@@ -31,9 +31,11 @@ clients = []
 
 while True:
     tcpsock.listen(10)
-    clients.append(csocket)
-    csocket.send( "Welcome to the chat room!...".encode())
+
     (clientsock, (ip, port)) = tcpsock.accept()
+    clients.append(clientsock)
+    clientsock.send( "Welcome to the chat room!...".encode())
+
 
     #pass clientsock to the ClientThread thread object being created
     newthread = ClientThread(ip, port, clientsock)
